@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TransaccionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,24 +16,28 @@ class Transaccion
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::BIGINT, nullable: true)]
+    #[ORM\Column(type: Types::BIGINT)]
     private ?string $monto = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $fecha = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $nombre = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $comentario = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cat_transaccion')]
-    private ?Categoria $cate = null;
+    #[ORM\ManyToOne(inversedBy: 'transacciones')]
+    private ?Cliente $cliente_transaccion = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cliente_transaccion')]
-    private ?Cliente $cliente = null;
+    #[ORM\ManyToMany(targetEntity: Categoria::class, mappedBy: 'cat_transaccion')]
+    private Collection $categorias;
 
+    public function __construct()
+    {
+        $this->categorias = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -43,7 +49,7 @@ class Transaccion
         return $this->monto;
     }
 
-    public function setMonto(?string $monto): static
+    public function setMonto(string $monto): static
     {
         $this->monto = $monto;
 
@@ -55,7 +61,7 @@ class Transaccion
         return $this->fecha;
     }
 
-    public function setFecha(?\DateTimeInterface $fecha): static
+    public function setFecha(\DateTimeInterface $fecha): static
     {
         $this->fecha = $fecha;
 
@@ -67,7 +73,7 @@ class Transaccion
         return $this->nombre;
     }
 
-    public function setNombre(?string $nombre): static
+    public function setNombre(string $nombre): static
     {
         $this->nombre = $nombre;
 
@@ -79,35 +85,49 @@ class Transaccion
         return $this->comentario;
     }
 
-    public function setComentario(?string $comentario): static
+    public function setComentario(string $comentario): static
     {
         $this->comentario = $comentario;
 
         return $this;
     }
 
-    public function getCate(): ?Categoria
+    public function getClienteTransaccion(): ?Cliente
     {
-        return $this->cate;
+        return $this->cliente_transaccion;
     }
 
-    public function setCate(?Categoria $cate): static
+    public function setClienteTransaccion(?Cliente $cliente_transaccion): static
     {
-        $this->cate = $cate;
+        $this->cliente_transaccion = $cliente_transaccion;
 
         return $this;
     }
 
-    public function getCliente(): ?Cliente
+    /**
+     * @return Collection<int, Categoria>
+     */
+    public function getCategorias(): Collection
     {
-        return $this->cliente;
+        return $this->categorias;
     }
 
-    public function setCliente(?Cliente $cliente): static
+    public function addCategoria(Categoria $categoria): static
     {
-        $this->cliente = $cliente;
+        if (!$this->categorias->contains($categoria)) {
+            $this->categorias->add($categoria);
+            $categoria->addCatTransaccion($this);
+        }
 
         return $this;
     }
 
+    public function removeCategoria(Categoria $categoria): static
+    {
+        if ($this->categorias->removeElement($categoria)) {
+            $categoria->removeCatTransaccion($this);
+        }
+
+        return $this;
+    }
 }

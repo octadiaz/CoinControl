@@ -15,10 +15,10 @@ class Categoria
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $tipo = null;
 
-    #[ORM\OneToMany(targetEntity: Transaccion::class, mappedBy: 'cate')]
+    #[ORM\ManyToMany(targetEntity: Transaccion::class, inversedBy: 'categorias')]
     private Collection $cat_transaccion;
 
     public function __construct()
@@ -36,7 +36,7 @@ class Categoria
         return $this->tipo;
     }
 
-    public function setTipo(?string $tipo): static
+    public function setTipo(string $tipo): static
     {
         $this->tipo = $tipo;
 
@@ -55,7 +55,6 @@ class Categoria
     {
         if (!$this->cat_transaccion->contains($catTransaccion)) {
             $this->cat_transaccion->add($catTransaccion);
-            $catTransaccion->setCate($this);
         }
 
         return $this;
@@ -63,12 +62,7 @@ class Categoria
 
     public function removeCatTransaccion(Transaccion $catTransaccion): static
     {
-        if ($this->cat_transaccion->removeElement($catTransaccion)) {
-            // set the owning side to null (unless already changed)
-            if ($catTransaccion->getCate() === $this) {
-                $catTransaccion->setCate(null);
-            }
-        }
+        $this->cat_transaccion->removeElement($catTransaccion);
 
         return $this;
     }
