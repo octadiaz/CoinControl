@@ -3,9 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ClienteRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -45,19 +42,7 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $dni = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nombre_usuario = null;
-
-    #[ORM\Column(type: Types::BIGINT)]
-    private ?string $saldo = null;
-
-    #[ORM\OneToMany(targetEntity: Transaccion::class, mappedBy: 'cliente_transaccion')]
-    private Collection $transacciones;
-
-    public function __construct()
-    {
-        $this->transacciones = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -182,57 +167,4 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getNombreUsuario(): ?string
-    {
-        return $this->nombre_usuario;
-    }
-
-    public function setNombreUsuario(string $nombre_usuario): static
-    {
-        $this->nombre_usuario = $nombre_usuario;
-
-        return $this;
-    }
-
-    public function getSaldo(): ?string
-    {
-        return $this->saldo;
-    }
-
-    public function setSaldo(string $saldo): static
-    {
-        $this->saldo = $saldo;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Transaccion>
-     */
-    public function getTransacciones(): Collection
-    {
-        return $this->transacciones;
-    }
-
-    public function addTransaccione(Transaccion $transaccione): static
-    {
-        if (!$this->transacciones->contains($transaccione)) {
-            $this->transacciones->add($transaccione);
-            $transaccione->setClienteTransaccion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTransaccione(Transaccion $transaccione): static
-    {
-        if ($this->transacciones->removeElement($transaccione)) {
-            // set the owning side to null (unless already changed)
-            if ($transaccione->getClienteTransaccion() === $this) {
-                $transaccione->setClienteTransaccion(null);
-            }
-        }
-
-        return $this;
-    }
 }
