@@ -1,9 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ClienteController!{% endblock %}
+{% block title %}Hello ResumenController!{% endblock %}
 
 {% block body %}
+    <header>
+        <div class="header">
+            <div class="top">
+                <img class="logo" src="/images/logoCC.png" alt="CoinControl">
+                <a href="/principal"><button class="button">Cerrar sesión</button></a>
+            </div>
+        </div>
+    </header>
+    <body>
+        <main>
+            <h1 class="h1-client">Resumen Financiero</h1>
+            <div class="general-client">
+                <div class="client-left">
+                    <div class="client-summary">
+                        <h2>Tu Saldo</h2>
+                        <h3 class="client-salary">USD $10.000</h3>
+                    </div>
+                    
+                    <div class="lists">
+                        <h2>Últimos Movimientos</h2>
+                        <div class="lists-descriptions">
+                            <ul>
+                                <li>Compra Cinemark </li>
+                                <li>Pago Claro Servicios</li>
+                                <li>Transferencia a Cami</li>
+                            </ul>
+                            <div class="list-mounts">
+                                <ul>
+                                    <li>$3.500</li>
+                                    <li>$12.600</li>
+                                    <li>$50.000</li>
+                                </ul>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                    <div class="client-right">
+                        <div class="client-buttons">
+                            <button class="client-transfer">Añadir Transferencia</button>
+                            <button class="client-data">Ver análisis de gastos</button>
+                        </div>
+                    </div>
+            </div>
+            
+        </main>
 
-    <h1>Esto es Un fucking Title</h1>
+
+        <footer>
+            <div class="copyright">
+                <span>Copyright 2024 CoinControl. Todos los derechos reservados.</span>
+            </div>
+        </footer>
+    </body>
     
 {% endblock %}
