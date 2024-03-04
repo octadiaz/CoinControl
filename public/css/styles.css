@@ -9,7 +9,11 @@ html, body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #f8f7f5;
+}
 
+button, input{
+    font-family: "Nunito", sans-serif;
 }
 
 .header{
@@ -19,6 +23,7 @@ html, body{
     -webkit-box-shadow: 0px 36px 20px -45px rgba(0,0,0,0.30);
     -moz-box-shadow: 0px 36px 20px -45px rgba(0,0,0,0.30);
     box-shadow: 0px 36px 20px -45px rgba(0,0,0,0.30); 
+    background-color: white;
     
 
 }
@@ -50,6 +55,7 @@ html, body{
 }
 .center{
 padding-top: 2rem;
+padding: 1.5rem;
 }
 
 .copyright{
@@ -61,6 +67,67 @@ footer{
     align-items: center; 
     margin-top: auto; 
     font-size: 0.8rem;
-    margin-top: auto;
-    
 }
+
+/* REGISTRO */
+
+.general-login{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5rem;
+    padding-top: 5rem; 
+}
+
+.login-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.register-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.input-login{
+    border: none;
+    border-bottom: 0.1rem solid;
+}
+
+.button-login{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: bold;
+    background-color: blue;
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.h1-login{
+    color: #253060;
+}
+
+.main-main{
+    background-color: #f8f7f5;
+}
+
+
