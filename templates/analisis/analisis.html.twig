@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TransaccionController!{% endblock %}
+{% block title %}Hello AnalisisController!{% endblock %}
 
 {% block body %}
-
     <header>
         <div class="header">
             <div class="top">
@@ -16,18 +15,17 @@
 
     <body>
         <main>
-            <div class="general-transaction">
-                <h1 class="h1-client">Registro de transacciones</h1>
-                <div class="transaction-body">
-                    <h2>Titulo o nombre</h2>
-                    <input type="text">
-                    <h2>Fecha y hora</h2>
-                    <input type="text">
-                    <h2>Categoría</h2>
-                    <input type="text">
-                    <h2>Comentario (Opcional)</h2>
-                    <input type="text">
-                    <a href="/cliente"><button  class="button-login">Confirmar</button></a>
+            <div class="general-analisis">
+                <h1 class="h1-client">Análisis de gastos</h1>
+                <div class="body-analisis">
+                    <h2>Restaurantes</h2>
+                    <p>$20000</p>
+                    <h2>Compras</h2>
+                    <p>$16000</p>
+                    <h2>Entretenimiento</h2>
+                    <p>$6000</p>
+                    <h2>Otros</h2>
+                    <p>$2500</p>
                 </div>
             </div>
         </main>
@@ -37,6 +35,4 @@
             </div>
         </footer>
     </body>
-
-
 {% endblock %}
