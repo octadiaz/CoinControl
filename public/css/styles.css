@@ -254,6 +254,10 @@ footer{
     cursor: pointer;
 }
 
+
+/* Transacciones*/
+
+
 .general-transaction{
     display: flex;
     justify-content: center;
@@ -282,6 +286,12 @@ footer{
 .transaction-body input{
     margin-bottom: 1.2rem;
 }
+
+.select-categories{
+
+}
+
+/* Analisis de datos*/
 
 .general-analisis{
     display: flex;
