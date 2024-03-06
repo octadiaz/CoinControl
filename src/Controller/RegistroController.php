@@ -2,38 +2,54 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Cliente;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class RegistroController extends AbstractController
 {
-    #[Route('/registro', name: 'app_registro')]
-    public function index(): Response
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        return $this->render('registro/registro.html.twig', [
-            'controller_name' => 'RegistroController',
-        ]);
+        $this->entityManager = $entityManager;
     }
 
-    public function Registro(){
-        $entityManager = $this->getDoctrine()->getManager();
-        
-        $Cliente = new Cliente();
+    
+    #[Route("/registro", name :"registro_u", methods: ["GET", "POST"])]
+public function registroUsuario(Request $request): Response{
+    // Si el formulario ha sido enviado
+    if ($request->isMethod('POST')) {
+        // Obtener los datos del formulario
+        $nombre = $request->request->get('nombre');
+        $apellido = $request->request->get('apellido');
+        $mail = $request->request->get('mail');
+        $dni = $request->request->get('dni');
+        $user = $request->request->get('user');
+        $password = $request->request->get('pass');
+        $cliente = new Cliente();
+        $cliente->setNombre($nombre);
+        $cliente->setApellido($apellido);
+        $cliente->setEmail($mail);
+        $cliente->setDni($dni);
+        $cliente->setUsername($user);
+        $cliente->setPassword($password);
 
-        //datos
-        $Cliente -> setUsername('');
-        $Cliente -> setPassword('');
-        $Cliente -> setNombre('');
-        $Cliente -> setApellido('');
-        $Cliente ->setEmail('');
-        $Cliente -> setDni('');
+            // Persistir los datos en la base de datos
+            $this->entityManager->persist($cliente);
+            $this->entityManager->flush();
 
-        //doctrine
-        $entityManager->persist($Cliente);
 
-        //base de datos
-        $entityManager->flush();
+            // Redirigir a alguna página de confirmación o a la página de inicio
+            return $this->render('cliente/cliente.html.twig');
+
+        }
+        // Renderizar la página Twig para cargar perfiles
+        return $this->render('registro/registro.html.twig');
     }
+
 }
