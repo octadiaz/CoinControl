@@ -19,12 +19,22 @@
             <div class="general-login">
                 <div class="login-login">
                     <h1 class="h1-login">¿Tenés una cuenta?</h1>
-                    <input type="text" name="user" placeholder="Ingresá tu usuario" class="input-login">
-                    <input type="password" name="pass" maxlength="8" placeholder="Ingresá tu contraseña" class="input-login">
-                    <a href="/cliente"><button  class="button-login">Ingresar</button></a>
+
+                    <form method="post" action="{{ path('ingreso_u')}}">
+                        <input type="text" name="user" placeholder="Ingresá tu usuario" class="input-login">
+                        <input type="password" name="pass" maxlength="8" placeholder="Ingresá tu contraseña" class="input-login">
+                        <a href="/cliente"><button  class="button-login">Ingresar</button></a>
+                        {% for message in app.flashes('fail') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </form>
+
                 </div>
                 <div class="register-login">
                     <h1 class="h1-login">Creá tu cuenta</h1>
+
                     <form method="post" action="{{ path('registro_u') }}">
                         <h2>Datos Personales</h2>
                         <input name="nombre" type="text" placeholder="Tu nombre" class="input-login">
@@ -41,6 +51,7 @@
                             </div>
                         {% endfor %}
                     </form>
+
                 </div>
             </div>
         </main>
