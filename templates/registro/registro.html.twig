@@ -19,12 +19,22 @@
             <div class="general-login">
                 <div class="login-login">
                     <h1 class="h1-login">¿Tenés una cuenta?</h1>
-                    <input type="text" name="user" placeholder="Ingresá tu usuario" class="input-login">
-                    <input type="password" name="pass" maxlength="8" placeholder="Ingresá tu contraseña" class="input-login">
-                    <a href="/cliente"><button  class="button-login">Ingresar</button></a>
+
+                    <form method="post" action="{{ path('ingreso_u')}}" class="login-login">
+                        <input type="text" name="user" placeholder="Ingresá tu usuario" class="input-login">
+                        <input type="password" name="pass" maxlength="8" placeholder="Ingresá tu contraseña" class="input-login">
+                        <a href="/cliente"><button  class="button-login">Ingresar</button></a>
+                        {% for message in app.flashes('fail') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </form>
+
                 </div>
                 <div class="register-login">
                     <h1 class="h1-login">Creá tu cuenta</h1>
+
                     <form method="post" action="{{ path('registro_u') }}" class="register-login">
                         <h2>Datos Personales</h2>
                         <input name="nombre" type="text" placeholder="Tu nombre" class="input-login">
@@ -35,7 +45,23 @@
                         <input name="user" type="text" placeholder="Nombre de usuario"  class="input-login">
                         <input name="pass" type="password" maxlength="8" placeholder="Contraseña" class="input-login">
                         <a href="/registro"><button class="button-login">Crear cuenta</button></a>
+                        {% for message in app.flashes('exito') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('complete') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('existent') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
                     </form>
+
                 </div>
             </div>
         </main>
