@@ -17,6 +17,7 @@ class RegistroController extends AbstractController
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
+        
     }
 
     #[Route("/registro", name :"registro_u", methods: ["GET", "POST"])]
@@ -106,6 +107,6 @@ class RegistroController extends AbstractController
 
 
 
-    
+
 
 }
