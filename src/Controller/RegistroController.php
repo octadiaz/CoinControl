@@ -17,6 +17,7 @@ class RegistroController extends AbstractController
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
+        
     }
 
     
@@ -55,7 +56,7 @@ public function registroUsuario(Request $request): Response{
 
 
 
-    
+
 
 }
 
