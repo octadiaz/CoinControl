@@ -103,4 +103,9 @@ class RegistroController extends AbstractController
         return $this->render('registro/registro.html.twig');
     }
 
+
+
+
+    
+
 }
