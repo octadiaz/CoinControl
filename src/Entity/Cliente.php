@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ClienteRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -41,6 +42,9 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?int $dni = null;
+
+    #[ORM\Column(type: Types::BIGINT)]
+    private ?string $saldo = null;
 
     
 
@@ -163,6 +167,18 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDni(int $dni): static
     {
         $this->dni = $dni;
+
+        return $this;
+    }
+
+    public function getSaldo(): ?string
+    {
+        return $this->saldo;
+    }
+
+    public function setSaldo(string $saldo): static
+    {
+        $this->saldo = $saldo;
 
         return $this;
     }

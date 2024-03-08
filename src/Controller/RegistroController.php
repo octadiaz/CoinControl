@@ -54,6 +54,7 @@ class RegistroController extends AbstractController
                 $cliente->setDni($dni);
                 $cliente->setUsername($user);
                 $cliente->setPassword($password);
+                $cliente->setSaldo(50000);
 
                 // Persistir los datos en la base de datos
                 $this->entityManager->persist($cliente);
