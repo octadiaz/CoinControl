@@ -18,7 +18,6 @@
             <div class="general-transaction">
                 <h1 class="h1-client">Registro de transacciones</h1>
                 <div class="transaction-body">
-                    <form method="post" action="{{ path('agregar_trans') }}" class="transaction-body"></form>
                     <h2>Titulo o nombre</h2>
                     <input type="text" name="nombre">
                     <h2>Fecha y hora</h2>
@@ -35,8 +34,8 @@
                     <input type="number" name="monto" placeholder="$" >
                     <h2>Comentario (Opcional)</h2>
                     <input type="text" name="comentario">
+
                     <a href="/cliente"><button class="button-login">Confirmar</button></a>
-                    </form>
                     
                 </div>
             </div>
