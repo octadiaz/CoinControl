@@ -18,22 +18,26 @@
             <div class="general-transaction">
                 <h1 class="h1-client">Registro de transacciones</h1>
                 <div class="transaction-body">
+                    <form method="post" action="{{ path('agregar_trans') }}" class="transaction-body"></form>
                     <h2>Titulo o nombre</h2>
-                    <input type="text">
+                    <input type="text" name="nombre">
                     <h2>Fecha y hora</h2>
-                    <input type="datetime-local">
+                    <input type="datetime-local" name="fecha">
                     <h2>Categorias</h2>
-                    <select class="select-categories">
-                        <option value="HTML">Categorias</option>
-                        <option value="HTML">Servicios</option>
-                        <option value="HTML">Compras</option>
-                        <option value="HTML">Entrenimiento</option>
-                        <option value="HTML">Otro</option>
+                    <select class="select-categories" name="tipo_categorias">
+                        <option value="">Categorias</option>
+                        <option value="tipo1">Servicios</option>
+                        <option value="tipo2">Compras</option>
+                        <option value="tipo3">Entrenimiento</option>
+                        <option value="tipo4">Otro</option>
                     </select>
-                    {# <input type="text"> #}
+                    <h2>Monto</h2>
+                    <input type="number" name="monto" placeholder="$" >
                     <h2>Comentario (Opcional)</h2>
-                    <input type="text">
+                    <input type="text" name="comentario">
                     <a href="/cliente"><button class="button-login">Confirmar</button></a>
+                    </form>
+                    
                 </div>
             </div>
         </main>
