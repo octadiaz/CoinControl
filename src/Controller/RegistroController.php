@@ -52,4 +52,12 @@ public function registroUsuario(Request $request): Response{
         return $this->render('registro/registro.html.twig');
     }
 
+
+
+
+    
+
 }
+
+}
+
