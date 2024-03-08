@@ -50,6 +50,16 @@
                                 {{ message }}
                             </div>
                         {% endfor %}
+                        {% for message in app.flashes('complete') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('existent') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
                     </form>
 
                 </div>
