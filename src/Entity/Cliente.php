@@ -43,9 +43,6 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $dni = null;
 
-    #[ORM\Column(type: Types::BIGINT)]
-    private ?string $Saldo = null;
-
     
 
     public function getId(): ?int
@@ -167,18 +164,6 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDni(int $dni): static
     {
         $this->dni = $dni;
-
-        return $this;
-    }
-
-    public function getSaldo(): ?string
-    {
-        return $this->Saldo;
-    }
-
-    public function setSaldo(string $Saldo): static
-    {
-        $this->Saldo = $Saldo;
 
         return $this;
     }
