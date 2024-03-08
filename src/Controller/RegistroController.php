@@ -43,9 +43,10 @@ public function registroUsuario(Request $request): Response{
             $this->entityManager->persist($cliente);
             $this->entityManager->flush();
 
+            $this->addFlash('exito', 'Se ha registrado exitosamente');
 
             // Redirigir a alguna página de confirmación o a la página de inicio
-            return $this->render('cliente/cliente.html.twig');
+            return $this->render('registro/registro.html.twig');
 
         }
         // Renderizar la página Twig para cargar perfiles

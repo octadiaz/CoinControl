@@ -35,6 +35,11 @@
                         <input name="user" type="text" placeholder="Nombre de usuario"  class="input-login">
                         <input name="pass" type="password" maxlength="8" placeholder="Contraseña" class="input-login">
                         <a href="/registro"><button class="button-login">Crear cuenta</button></a>
+                        {% for message in app.flashes('exito') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
                     </form>
                 </div>
             </div>
