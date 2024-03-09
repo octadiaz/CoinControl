@@ -287,10 +287,6 @@ footer{
     margin-bottom: 1.2rem;
 }
 
-.select-categories{
-
-}
-
 /* Analisis de datos*/
 
 .general-analisis{
@@ -314,5 +310,10 @@ footer{
     background-color: white;
 }
     
+.login-title{
+    display: none;
+}
 
-
+.account-register{
+    font-family: "Nunito", sans-serif;
+}

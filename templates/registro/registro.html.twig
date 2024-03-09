@@ -7,7 +7,7 @@
         <div class="header">
             <div class="top">
                 <img class="logo" src="/images/logoCC.png" alt="CoinControl">
-                <a href="/principal"><img class="arrow" src="/images/left-arrow.png" alt="no anda boludo"></a>
+                <a href="/login"><img class="arrow" src="/images/left-arrow.png" alt=""></a>
                 
             </div>
         </div>
@@ -17,21 +17,6 @@
 
         <main>
             <div class="general-login">
-                <div class="login-login">
-                    <h1 class="h1-login">¿Tenés una cuenta?</h1>
-
-                    <form method="post" action="{{ path('ingreso_u')}}" class="login-login">
-                        <input type="text" name="user" placeholder="Ingresá tu usuario" class="input-login">
-                        <input type="password" name="pass" maxlength="8" placeholder="Ingresá tu contraseña" class="input-login">
-                        <a href="/cliente"><button  class="button-login">Ingresar</button></a>
-                        {% for message in app.flashes('fail') %}
-                            <div class="alert alert-success">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    </form>
-
-                </div>
                 <div class="register-login">
                     <h1 class="h1-login">Creá tu cuenta</h1>
 
