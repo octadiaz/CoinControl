@@ -6,19 +6,23 @@
     <header>
         <div class="header">
             <div class="top">
+
                 <img class="logo" src="/images/logoCC.png" alt="CoinControl">
-                <a href="/principal"><button class="button">Cerrar sesión</button></a>
+                {% if app.user %}
+                            <div class="mb-3"><a href="{{ path('app_logout') }}" class="button">Cerrar sesión</a></div>
+                {% endif %}
+                
             </div>
         </div>
     </header>
     <body>
         <main>
-            <h1 class="h1-client">Resúmen Financiero</h1>
+            <h1 class="h1-client">Resumen Financiero</h1>
             <div class="general-client">
                 <div class="client-left">
                     <div class="client-summary">
                         <h2>Tu Saldo</h2>
-                        
+                        <p class="client-salary">{{ saldo }}</p>
                     </div>
                     
                     <div class="lists">

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<header>
+    <div class="header">
+        <div class="top">
+            <img class="logo" src="/images/logoCC.png" alt="CoinControl">
+            <a href="/principal"><img class="arrow" src="/images/left-arrow.png" alt="no anda boludo"></a>
+            
+        </div>
+    </div>
+</header>
+
+<body>
+    
+    <main>
+        <div class="general-login">
+            <div class="login-login">
+                <form method="post" class="login-login">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    
+
+                    <h1 class="h3 mb-3 font-weight-normal">¿Tenés una cuenta?</h1>
+                    <label class="login-title" for="inputUsername">Username</label>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="input-login" autocomplete="username" placeholder="Ingresá tu usuario" required autofocus>
+                    <label class="login-title" for="inputPassword">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="input-login" placeholder="Ingresá tu contraseña" autocomplete="current-password" required>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button class="button-login" type="submit">Ingresar</button>
+
+                </form>
+                <a href="registro"><h2 class="account-register">No tienes una cuenta? Registrate</h2></a> 
+            </div>
+        </div>
+    </main>    
+            <footer>
+                <div class="copyright">
+                    <span>Copyright 2024 CoinControl. Todos los derechos reservados.</span>
+                </div>
+            </footer>
+
+</body>
+{% endblock %}

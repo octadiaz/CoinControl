@@ -22,9 +22,13 @@ class ClienteController extends AbstractController
     #[Route('/cliente', name: 'app_cliente')]
     public function index(): Response
     {
+        $cliente = $this->getUser();
+        $saldo = $cliente->getSaldo();
+
         return $this->render('cliente/cliente.html.twig', [
-            'controller_name' => 'AnalisisController',
+            'saldo' => $saldo,
         ]);
+
     }
 
 }
