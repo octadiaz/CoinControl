@@ -18,14 +18,14 @@
             <div class="general-analisis">
                 <h1 class="h1-client">Análisis de gastos</h1>
                 <div class="body-analisis">
-                    <h2>Servicios</h2>
-                    <p>$20000</p>
-                    <h2>Compras</h2>
-                    <p>$16000</p>
-                    <h2>Entretenimiento</h2>
-                    <p>$6000</p>
-                    <h2>Otros</h2>
-                    <p>$2500</p>
+                    <ul>
+                        {% for categoria, montoTotal in categoriasData %}
+                        <div class="analisis-data">
+                            <li>{{ categoria }}</li>
+                            <p>Total gastado: ${{ montoTotal }}</p>
+                        </div>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </main>

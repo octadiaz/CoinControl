@@ -62,6 +62,15 @@ button, input{
 .center{
 padding-top: 2rem;
 padding: 1.5rem;
+padding-right: 2rem;
+display: flex;
+justify-content: center;
+flex-direction: row;
+}
+
+.center img{
+    width: 30rem;
+    margin-right: 1rem;
 }
 
 .copyright{
@@ -174,6 +183,9 @@ footer{
     background-color: #F4D121;
     border-radius: 5rem;
     padding: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+    font-style: italic;
 }
 
 .lists{
@@ -276,6 +288,7 @@ footer{
     padding-right: 5rem;
     border-radius: 1.5rem;
     background-color: white;
+    border: 0;
     
 }
 
@@ -285,6 +298,9 @@ footer{
 
 .transaction-body input{
     margin-bottom: 1.2rem;
+    border: none;
+    border-bottom: 0.1rem solid;
+    
 }
 
 /* Analisis de datos*/
@@ -309,6 +325,23 @@ footer{
     padding-right: 5rem;
     background-color: white;
 }
+
+.analisis-data{
+    background-color: #F4D121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    list-style: none;
+}
+
+.analisis-data li{
+    font-size: 25px;
+    font-weight: bold;
+}
     
 .login-title{
     display: none;
@@ -316,4 +349,8 @@ footer{
 
 .account-register{
     font-family: "Nunito", sans-serif;
+}
+
+.monto::before{
+    content: "$";
 }

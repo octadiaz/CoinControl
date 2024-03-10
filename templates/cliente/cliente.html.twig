@@ -21,8 +21,8 @@
             <div class="general-client">
                 <div class="client-left">
                     <div class="client-summary">
-                        <h2>Tu Saldo</h2>
-                        <p class="client-salary">{{ saldo }}</p>
+                        <h1>Tu Saldo</h1>
+                        <p class="client-salary">$ {{ saldo }} </p>
                     </div>
                     
                     <div class="lists">
@@ -30,17 +30,22 @@
                         <div class="lists-lr">
                             <div class="lists-descriptions">
                                 <ul>
-                                    <li>Compra Cinemark </li>
-                                    <li>Pago Claro Servicios</li>
-                                    <li>Transferencia a Cami</li>
+                                    {% for transaccion in transacciones %}
+                                    
+                                    <li>{{transaccion.nombre}} </li>
+                                    
+                                    {% endfor %}
                                 </ul>
                             </div>
+                            
                             <div class="list-mounts">
                                 <ul>
-                                    <li>$3.500</li>
-                                    <li>$12.600</li>
-                                    <li>$50.000</li>
-                                </ul>    
+                                    {% for transaccion in transacciones %}
+                                    
+                                    <li>${{transaccion.monto}} </li>
+                                    
+                                    {% endfor %}
+                                </ul>   
                             </div>
                         </div>
                     </div>

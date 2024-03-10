@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\TransaccionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,12 +29,23 @@ class Transaccion
     #[ORM\ManyToOne(inversedBy: 'transacciones')]
     private ?Cliente $cliente_transaccion = null;
 
-    #[ORM\ManyToMany(targetEntity: Categoria::class, mappedBy: 'cat_transaccion')]
-    private Collection $categorias;
+    #[ORM\ManyToOne(targetEntity: Categoria::class)]
+    private ?Categoria $categoria;
 
     public function __construct()
     {
-        $this->categorias = new ArrayCollection();
+    }
+
+    public function getCategoria(): ?Categoria
+    {
+        return $this->categoria;
+    }
+
+    public function setCategoria(?Categoria $categoria): static
+    {
+        $this->categoria = $categoria;
+
+        return $this;
     }
 
     public function getId(): ?int
@@ -104,30 +113,5 @@ class Transaccion
         return $this;
     }
 
-    /**
-     * @return Collection<int, Categoria>
-     */
-    public function getCategorias(): Collection
-    {
-        return $this->categorias;
-    }
-
-    public function addCategoria(Categoria $categoria): static
-    {
-        if (!$this->categorias->contains($categoria)) {
-            $this->categorias->add($categoria);
-            $categoria->addCatTransaccion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategoria(Categoria $categoria): static
-    {
-        if ($this->categorias->removeElement($categoria)) {
-            $categoria->removeCatTransaccion($this);
-        }
-
-        return $this;
-    }
+    
 }

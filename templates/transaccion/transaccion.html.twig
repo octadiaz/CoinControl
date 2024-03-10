@@ -8,7 +8,7 @@
         <div class="header">
             <div class="top">
                 <img class="logo" src="/images/logoCC.png" alt="CoinControl">
-                <a href="/cliente"><img class="arrow" src="/images/left-arrow.png" alt=""></a>
+                <a href="/cliente"><img class="arrow" src="/images/left-arrow.png" alt="a"></a>
             </div>
         </div>
     </header>
@@ -17,26 +17,40 @@
         <main>
             <div class="general-transaction">
                 <h1 class="h1-client">Registro de transacciones</h1>
-                <div class="transaction-body">
-                    <h2>Titulo o nombre</h2>
-                    <input type="text" name="nombre">
-                    <h2>Fecha y hora</h2>
-                    <input type="datetime-local" name="fecha">
-                    <h2>Categorias</h2>
-                    <select class="select-categories" name="tipo_categorias">
-                        <option value="">Categorias</option>
-                        <option value="tipo1">Servicios</option>
-                        <option value="tipo2">Compras</option>
-                        <option value="tipo3">Entrenimiento</option>
-                        <option value="tipo4">Otro</option>
-                    </select>
-                    <h2>Monto</h2>
-                    <input type="number" name="monto" placeholder="$" >
-                    <h2>Comentario (Opcional)</h2>
-                    <input type="text" name="comentario">
+                
+                    <form action="{{ path('agregar_trans') }}" method="post">
+                        <div class="transaction-body">
+                        <h2>Titulo o nombre</h2>
+                        <input type="text" name="nombre">
+                        <h2>Fecha y hora</h2>
+                        <input type="datetime-local" name="fecha">
+                        <h2>Categorias</h2>
+                        <select class="select-categories" name="tipo_categorias">
+                            <option value="">Categorias</option>
+                            <option value="1">Servicios</option>
+                            <option value="2">Compras</option>
+                            <option value="3">Entrenimiento</option>
+                            <option value="4">Otro</option>
+                        </select>
+                        <h2>Monto</h2>
+                        <div class="monto"><input type="number" name="monto"></div>
+                        <h2>Comentario (Opcional)</h2>
+                        <input type="text" name="comentario">
+                        <button type="submit" class="button-login">Confirmar</button>
+                        
+                        {% for message in app.flashes('error1') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
 
-                    <a href="/cliente"><button class="button-login">Confirmar</button></a>
-                    
+                        {% for message in app.flashes('exito1') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </form>
                 </div>
             </div>
         </main>
@@ -46,6 +60,5 @@
             </div>
         </footer>
     </body>
-
 
 {% endblock %}
