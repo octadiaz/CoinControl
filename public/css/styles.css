@@ -55,7 +55,10 @@ button, input{
     border-style: none;
     cursor: pointer;
     font-family: "Nunito", sans-serif;
+    text-decoration: none;
 }
+
+
 
 .center{
 padding-top: 2rem;
@@ -94,8 +97,6 @@ align-items: center;
 }
 
 
-.copyright{
-}
 
 footer{
     display: flex;
