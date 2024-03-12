@@ -47,12 +47,12 @@ class RegistroController extends AbstractController
                 
                 if ($existingCliente) 
                 {
-                    // Si el usuario ya existe, muestra un mensaje de error
-                    $this->addFlash('existent', 'Usuario existente');
-                    return $this->redirectToRoute('registro_u');
+                // Si el usuario ya existe, muestra un mensaje de error
+                $this->addFlash('existent', 'Usuario existente');
+                return $this->redirectToRoute('registro_u');
                 }
                 
-                // Crear una nueva instancia de Cliente y establecer sus propiedades
+                // Crea una nueva instancia de Cliente y establece sus propiedades
                 $cliente = new Cliente();
                 $cliente->setNombre($nombre);
                 $cliente->setApellido($apellido);
@@ -64,13 +64,12 @@ class RegistroController extends AbstractController
                 $cliente->setPassword($this->passwordHasher->hashPassword($cliente, $cliente->getPassword()));
 
 
-                // Persistir los datos en la base de datos
+                // Carga los datos en la base de datos
                 $this->entityManager->persist($cliente);
                 $this->entityManager->flush();
 
                 $this->addFlash('exito', 'Se ha registrado exitosamente');
                 
-                // Redirigir a alguna página de confirmación o a la página de inicio
                 return $this->redirectToRoute('app_login');
 
             } else {
@@ -79,7 +78,7 @@ class RegistroController extends AbstractController
                 return $this->redirectToRoute('registro_u');
             }
         }
-        // Si el método no es POST, simplemente renderiza el formulario de ingreso
+        // Si el método no es POST, renderiza el formulario de ingreso
         return $this->render('registro/registro.html.twig');
     }
 

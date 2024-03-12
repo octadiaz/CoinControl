@@ -23,15 +23,16 @@ class ClienteController extends AbstractController
     #[Route('/cliente', name: 'app_cliente')]
     public function mostrarDatos(): Response
     {
+        // Obtiene el usuario y el saldo del cliente
         $cliente = $this->getUser();
         $saldo = $cliente->getSaldo();
         
-            
-            $transaccionesRepository = $this->entityManager->getRepository(Transaccion::class);
-            $transacciones = $transaccionesRepository->findBy(['cliente_transaccion' => $cliente->getId()]);
+        // Obtiene las transacciones del cliente
+        $transaccionesRepository = $this->entityManager->getRepository(Transaccion::class);
+        $transacciones = $transaccionesRepository->findBy(['cliente_transaccion' => $cliente->getId()]);
             
 
-            return $this->render('cliente/cliente.html.twig', [
+        return $this->render('cliente/cliente.html.twig', [
             'saldo' => $saldo, 'transacciones' => $transacciones
         ]);
     }

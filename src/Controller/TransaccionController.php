@@ -23,8 +23,9 @@ class TransaccionController extends AbstractController
     #[Route('/transaccion', name: 'agregar_trans', methods: ['GET', 'POST'])]
     public function añadirTransaccion(Request $request): Response
     {
+        // Si el formulario ha sido enviado
         if ($request->isMethod('POST')) {
-            // Obtener los datos del formulario
+            // Obtiene los datos del formulario
             $nombre = $request->request->get('nombre');
             $fecha = new DateTime($request->request->get('fecha'));
             $categoria = $request->request->get('tipo_categorias');
@@ -33,11 +34,11 @@ class TransaccionController extends AbstractController
             
             $cliente = $this->getUser();
             
-            // Obtener el saldo disponible del cliente
+            // Obtiene el saldo disponible del cliente
             $saldoDisponible = $cliente->getSaldo();
             
             
-            // Verificar si el monto de la transacción es mayor que el saldo disponible
+            // Verifica si el monto de la transacción es mayor que el saldo disponible
             if ($monto > $saldoDisponible) {
             $this->addFlash('error1', 'No tienes suficiente saldo para realizar esta transacción');
             return $this->redirectToRoute('agregar_trans');
@@ -50,7 +51,7 @@ class TransaccionController extends AbstractController
                 $this->addFlash('exito1', 'Transacción exitosa');
                 
                 
-                // Crear una nueva instancia de Transaccion y establecer sus propiedades
+                // Crea una nueva instancia de Transaccion y establece sus propiedades
                 $transaccion = new Transaccion();
                 $transaccion->setNombre($nombre);
                 $transaccion->setFecha($fecha);
@@ -58,20 +59,20 @@ class TransaccionController extends AbstractController
                 $transaccion->setComentario($comentario);
                 $transaccion->setClienteTransaccion($cliente);
 
-                // Si tienes la entidad Categoria, puedes asignarla a la transacción
-                // Asumiendo que el valor de $categoria es el id de la categoría
+                // Valida que la categoria ingresada coincida con la guardada en el repositorio
+                // y se la asigna al objeto transaccion
                 $categoriaEntity = $this->entityManager->getRepository(Categoria::class)->find($categoria);
                 if ($categoriaEntity) {
                     $transaccion->setCategoria($categoriaEntity);
                 }
             
 
-                // Actualizar el saldo del cliente
+                // Actualiza el saldo del cliente
                 $saldoActual = $cliente->getSaldo();
                 $nuevoSaldo = $saldoActual - $monto;
                 $cliente->setSaldo($nuevoSaldo);
 
-                // Persistir los datos en la base de datos
+                // Carga los datos en la base de datos
                 $this->entityManager->persist($transaccion);
                 $this->entityManager->flush();
             
@@ -85,7 +86,6 @@ class TransaccionController extends AbstractController
                 return $this->redirectToRoute('agregar_trans');
             }
             
-            // Redirigir a alguna página de confirmación o a la página de inicio
                 return $this->redirectToRoute('app_cliente');
             }
         
