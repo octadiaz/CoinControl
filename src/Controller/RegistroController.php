@@ -52,12 +52,6 @@ class RegistroController extends AbstractController
                     return $this->redirectToRoute('registro_u');
                 }
                 
-                // Obtener las instancias de las categorías desde la base de datos
-                $categoriaServicios = $this->entityManager->getRepository(Categoria::class)->findOneBy(['tipo' => 'Servicios']);
-                $categoriaCompras = $this->entityManager->getRepository(Categoria::class)->findOneBy(['tipo' => 'Compras']);
-                $categoriaEntretenimiento = $this->entityManager->getRepository(Categoria::class)->findOneBy(['tipo' => 'Entretenimiento']);
-                $categoriaOtros = $this->entityManager->getRepository(Categoria::class)->findOneBy(['tipo' => 'Otro']);
-
                 // Crear una nueva instancia de Cliente y establecer sus propiedades
                 $cliente = new Cliente();
                 $cliente->setNombre($nombre);
@@ -69,29 +63,9 @@ class RegistroController extends AbstractController
                 $cliente->setSaldo(50000);
                 $cliente->setPassword($this->passwordHasher->hashPassword($cliente, $cliente->getPassword()));
 
-                // Crear dos instancias de Transaccion y establecer sus atributos y categorías
-                $transaccion1 = new Transaccion();
-                $transaccion1->setClienteTransaccion($cliente);
-                $transaccion1->setNombre('Claro Marzo');
-                $transaccion1->setFecha(new \DateTime());
-                $transaccion1->setMonto('500'); // Aquí establece el monto deseado
-                $transaccion1->setComentario('Pago a Claro');
-                $transaccion1->setCategoria($categoriaServicios); // Asignar la categoría correspondiente
-
-                $transaccion2 = new Transaccion();
-                $transaccion2->setClienteTransaccion($cliente);
-                $transaccion2->setNombre('MercadoLibre Teclado');
-                $transaccion2->setFecha(new \DateTime());
-                $transaccion2->setMonto('1000'); // Aquí establece el monto deseado
-                $transaccion2->setComentario('Compra en MercadoLibre');
-                $transaccion2->setCategoria($categoriaCompras); // Asignar la categoría correspondiente
-
-
 
                 // Persistir los datos en la base de datos
                 $this->entityManager->persist($cliente);
-                $this->entityManager->persist($transaccion1);
-                $this->entityManager->persist($transaccion2);
                 $this->entityManager->flush();
 
                 $this->addFlash('exito', 'Se ha registrado exitosamente');

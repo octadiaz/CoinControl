@@ -43,6 +43,9 @@ class TransaccionController extends AbstractController
             return $this->redirectToRoute('agregar_trans');
             }
 
+            if ($nombre && $fecha && $categoria && $monto)
+            {
+
             if ($monto <= $saldoDisponible && $monto > 0) {
                 $this->addFlash('exito1', 'Transacción exitosa');
                 
@@ -75,8 +78,13 @@ class TransaccionController extends AbstractController
                 return $this->redirectToRoute('agregar_trans');
                 }
 
-            
 
+            } else{
+                // Si el usuario ya existe, muestra un mensaje de error
+                $this->addFlash('complete1', 'Complete los campos necesarios');
+                return $this->redirectToRoute('agregar_trans');
+            }
+            
             // Redirigir a alguna página de confirmación o a la página de inicio
                 return $this->redirectToRoute('app_cliente');
             }
