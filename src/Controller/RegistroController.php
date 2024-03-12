@@ -60,7 +60,7 @@ class RegistroController extends AbstractController
                 $cliente->setDni($dni);
                 $cliente->setUsername($user);
                 $cliente->setPassword($password);
-                $cliente->setSaldo(50000);
+                $cliente->setSaldo(100000);
                 $cliente->setPassword($this->passwordHasher->hashPassword($cliente, $cliente->getPassword()));
 
 
